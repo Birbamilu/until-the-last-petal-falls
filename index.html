@@ -62,32 +62,7 @@
     transition: transform 0.3s ease;
     animation: float 3s ease-in-out infinite; /* mantiene l’effetto “fluttuante” */
 }
-.like-btn {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: linear-gradient(135deg, #800020 0%, #b00040 100%);
-    color: white;
-    border: none;
-    padding: 15px 40px;
-    font-size: 1.1em;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    z-index: 10; /* resta sopra i petali */
-}
-.like-btn.liked {
-    background: linear-gradient(135deg, #4b0010 0%, #800020 100%);
-    opacity: 0.8;
-    cursor: default;
-}
 
-.like-btn:hover {
-    transform: translate(-50%, -50%) scale(1.05);
-    box-shadow: 0 6px 15px rgba(128,0,32,0.4);
-}
 
 
         @keyframes float {
@@ -281,8 +256,7 @@ font-family: "Edwardian Script ITC", "Lucida Handwriting", cursive;
     <div class="petal petal-7" onclick="showSketch(7)"><span>7</span></div>
     <div class="petal petal-8" onclick="showSketch(8)"><span>8</span></div>
 
-    <!-- 💖 Bottone al centro -->
-    <button class="like-btn" onclick="addLike()">❤️ Mi piace <span id="likeCount">0</span></button>
+   
 </div>
 
 <button class="back-btn" onclick="goToPage1()">Torna alla Rosa</button>
@@ -382,40 +356,12 @@ font-family: "Edwardian Script ITC", "Lucida Handwriting", cursive;
                 closeModal();
             }
         });
-function addLike() {
-    // Controlla se l’utente ha già messo mi piace
-    if (localStorage.getItem('liked') === 'true') {
-        alert('Hai già messo Mi Piace 💕');
-        return;
-    }
-
-    // Incrementa il contatore solo la prima volta
-    let count = localStorage.getItem('likeCount') || 0;
-    count = parseInt(count) + 1;
-    localStorage.setItem('likeCount', count);
-    localStorage.setItem('liked', 'true'); // segna che ha messo mi piace
-
-    // Aggiorna visivamente
-    document.getElementById('likeCount').textContent = count;
-    document.querySelector('.like-btn').classList.add('liked');
-}
-
-window.addEventListener('load', () => {
-    const savedLikes = localStorage.getItem('likeCount') || 0;
-    const liked = localStorage.getItem('liked') === 'true';
-
-    document.getElementById('likeCount').textContent = savedLikes;
-
-    // Se ha già messo mi piace, cambia lo stile del bottone
-    if (liked) {
-        document.querySelector('.like-btn').classList.add('liked');
-    }
-});
 
 
     </script>
 </body>
 </html>
+
 
 
 
